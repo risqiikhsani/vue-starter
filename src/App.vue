@@ -1,5 +1,6 @@
 <script setup>
 import { reactive,ref } from 'vue';
+import cats from './components/cats.vue';
 
 const message = ref("hello world")
 
@@ -25,6 +26,12 @@ function incrementBy(number) {
   x.value += number; // Update count.value directly
 }
 
+const awesome = ref(true)
+
+function toggleAwesome(){
+  awesome.value = !awesome.value
+}
+
 </script>
 
 <template>
@@ -48,6 +55,11 @@ function incrementBy(number) {
     <!-- v-model automatically syncs the <input>'s value with the bound state, so we no longer need to use an event handler for that. -->
     <input type="text" v-model="text" placeholder="type here">
     <p>result : {{ text }}</p>
+
+    <button @click="toggleAwesome">toggle</button>
+    <h1 v-if="awesome">awesome dude</h1>
+    <h1 v-else>not awesome</h1>
+    <cats/>
   </div>
 
 </template>
